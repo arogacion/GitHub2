@@ -36,6 +36,6 @@ task deployReports (dependsOn: ['copyDocs']) {
 }
 
 task buildSite (dependsOn: ['javadoc', 'check',             
-                      'copyDocs']) {
+                      'deployReports']) {
     description 'Generate reports website for this project'
 }
