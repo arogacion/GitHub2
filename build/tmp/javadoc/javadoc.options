@@ -1,8 +1,0 @@
--classpath 'C:\\Users\\clust\\Documents\\CS350\\GitHub2\\build\\classes\\java\\main;C:\\Users\\clust\\Documents\\CS350\\GitHub2\\build\\resources\\main'
--d 'C:\\Users\\clust\\Documents\\CS350\\GitHub2\\build\\docs\\javadoc'
--doctitle 'GitHub2 API'
--notimestamp 
--quiet 
--windowtitle 'GitHub2 API'
-'C:\\Users\\clust\\Documents\\CS350\\GitHub2\\src\\main\\java\\Author.java'
-'C:\\Users\\clust\\Documents\\CS350\\GitHub2\\src\\main\\java\\Vocabulary.java'
