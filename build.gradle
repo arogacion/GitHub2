@@ -8,7 +8,7 @@ java {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -19,4 +19,25 @@ dependencies {
 test {  
     ignoreFailures = true 
     useJUnitPlatform()
+}
+
+task reports (dependsOn: ['javadoc', 'test']) {
+	description 'Runs the javadoc and test task'
+}
+
+task copyDocs (type: Copy) {            
+    from 'build/docs'
+    into 'build/reports/docs'
+    dependsOn 'javadoc'
+}
+
+task copyReports (type: Copy) {
+	from 'build/reports'
+	into 'build/reports'
+	dependsOn 'javadoc'
+	dependsOn 'test'
+}
+
+task deployReports (dependsOn: ['reports', 'copyDocs', 'copyReports']) {
+	description 'Runs the tasks: report, copyDocs, and copyReports'
 }
