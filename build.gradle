@@ -21,6 +21,7 @@ test {
     useJUnitPlatform()
 }
 
+
 task reports (dependsOn: ['javadoc', 'test']) {
 	description 'Runs the javadoc and test task'
 }
@@ -31,13 +32,6 @@ task copyDocs (type: Copy) {
     dependsOn 'javadoc'
 }
 
-task copyReports (type: Copy) {
-	from 'build/reports'
-	into 'build/reports'
-	dependsOn 'javadoc'
-	dependsOn 'test'
-}
-
-task deployReports (dependsOn: ['reports', 'copyDocs', 'copyReports']) {
+task deployReports (dependsOn: ['javadoc', 'reports', 'check', 'copyDocs']) {
 	description 'Runs the tasks: report, copyDocs, and copyReports'
 }
