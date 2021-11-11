@@ -20,3 +20,17 @@ test {
     ignoreFailures = true 
     useJUnitPlatform()
 }
+
+task reports (dependsOn: ['javadoc', 'test']) {
+	description 'Runs the javadoc and test task'
+}
+
+task copyDocs (type: Copy) {            
+    from 'build/docs'
+    into 'build/reports/docs'
+    dependsOn 'javadoc'
+}
+
+task deployReports (dependsOn: ['javadoc', 'reports', 'check', 'copyDocs']) {
+	description 'Runs the tasks: report, copyDocs, and copyReports'
+}
