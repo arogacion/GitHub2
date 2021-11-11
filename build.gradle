@@ -34,7 +34,6 @@ task copyDocs (type: Copy) {
 task copyWebpages (type: Copy) {
 	from 'build/reports'
     into 'build/reports'
-    dependsOn 'test'
 }
 
 task deployReports (dependsOn: ['copyDocs', 'copyWebpages', 'javadoc', 'check']) {
