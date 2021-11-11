@@ -80,6 +80,8 @@ public class Vocabulary {
     /**
      * Returns a list of all words that are known to have followed lastWord,
      * in the order added. If no such words exist, returns a list of length 0.
+     * @param lastWord - gets last word
+     * @return follow - return what follows
      **/
     public List<String> getWordsThatCanFollow(String lastWord) {
         ArrayList<String> follow = followers.get(lastWord);

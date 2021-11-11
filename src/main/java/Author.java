@@ -21,8 +21,8 @@ public class Author {
      * Construct an author object to simulate the vocabulary usage
      * indicated by a sample text file.
      *  
-     * @param inputFile
-     * @throws FileNotFoundException 
+     * @param inputFile - this is input for the file
+     * @throws FileNotFoundException - handle input error
      */
     public Author(File inputFile) throws FileNotFoundException {
         vocabulary = new Vocabulary();
@@ -51,8 +51,8 @@ public class Author {
      * The first is the name of an input file.
      * The second is the number of words of output to generate.
      * 
-     * @param args
-     * @throws FileNotFoundException 
+     * @param args - argument input
+     * @throws FileNotFoundException - error handling
      */
     public static void main(String[] args) throws FileNotFoundException {
         if (args.length != 2) {
