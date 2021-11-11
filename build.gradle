@@ -22,20 +22,29 @@ test {
     useJUnitPlatform()
 }
 
-task reports (dependsOn: ['javadoc', 'test']) {
+task copyDocs (type: Copy) {            
+    from 'build/docs'
+    into "$docsDir/"
+    dependsOn 'javadoc'
+}
+
+task copyTest (type: Copy) {
+    from 'build/reports'
+    into "$reportsDir/"
+    dependsOn 'test'
+}
+
+task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest']) {
 	description 'Runs the javadoc and test task'
 }
 
-task clonePages() {                                             
+task deployReports(type: Copy, dependsOn: ['reports', 'check']) {                                             
     doLast {
-        mkdir 'build/gh-pages'
+        mkdir 'docs/'
+        mkdir 'reports/'
         def thisRepo = rootProject.projectDir.toString()
-        def pagesDir = "$buildDir/gh-pages"
-        project.delete {
-            delete pagesDir
-        }
+        
         def grgit = git.clone {
-            dir = pagesDir
             uri = 'file:' + thisRepo
             bare = false
             refToCheckout = 'gh-pages'
@@ -43,24 +52,11 @@ task clonePages() {
         grgit.checkout {
             branch = 'gh-pages'
         }
-    }
-}
-
-task copyDocs (type: Copy, dependsOn: ['bake', 'clonePages']) {  
-    from "$buildDir/docs"
-    into "$buildDir/gh-pages"
-}
-
-task updateGHPages (dependsOn: 'copyDocs') {                     
-    group = "Reporting"
-    description  'Copies reports to the gh-pages branch in preparation for a future push to GitHub'
-    doLast {
-        def pagesDir = "$buildDir/gh-pages"
-        def grgit = git.open {
-            dir = pagesDir + "/.git"
-        }
+        
         grgit.add (update: false, patterns: ['reports/'])
         grgit.add (update: true, patterns: ['reports/'])
+        grgit.add (update: false, patterns: ['docs/'])
+        grgit.add (update: true, patterns: ['docs/'])
         grgit.commit {
             message = "Updating web pages"
         }
