@@ -41,8 +41,6 @@ task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest']) {
 task deployReports(type: Copy, dependsOn: ['reports', 'check']) {                                             
     doLast {
         def thisRepo = rootProject.projectDir.toString()
-        mkdir 'docs/'
-        mkdir 'reports/'
         def grgit = git.clone {
             uri = 'file:' + thisRepo
             bare = false
