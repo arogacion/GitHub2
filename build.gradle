@@ -40,17 +40,9 @@ task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest']) {
 
 task deployReports(type: Copy, dependsOn: ['reports', 'check']) {                                             
     doLast {
-        def thisRepo = rootProject.projectDir.toString()
-        def grgit = git.clone {
-            uri = 'file:' + thisRepo
-            bare = false
-            refToCheckout = 'gh-pages'
-        }
-        grgit.checkout {
-            branch = 'gh-pages'
-        }
+       
         def pagesDir = "gh-pages/"
-        git.open {
+        def grgit = git.open {
             dir = pagesDir + "/.git"
         }
         grgit.add (update: false, patterns: ['reports/'])
