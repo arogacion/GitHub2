@@ -22,3 +22,5 @@ jobs:
       run: ./gradlew build
     - name: Test with gradle
       run: ./gradlew test
+    - name: Deploy Reports to a website
+      run: ./gradlew deployReports
