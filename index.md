@@ -2,5 +2,5 @@
 
 Your Name
 
-* [Tests](./report/tests/test/)
-* [JavaDoc](./doc/javadoc/)
+* [Tests](./reports/tests/test/)
+* [JavaDoc](./docs/javadoc/)
