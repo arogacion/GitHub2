@@ -24,13 +24,13 @@ test {
 
 task copyDocs (type: Copy) {            
     from 'build/docs'
-    into "docs/"
+    into 'docs/'
     dependsOn 'javadoc'
 }
 
 task copyTest (type: Copy) {
     from 'build/reports'
-    into "reports/"
+    into 'reports/'
     dependsOn 'test'
 }
 
