@@ -40,8 +40,6 @@ task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest']) {
 
 task deployReports(type: Copy, dependsOn: ['reports', 'check']) {                                             
     doLast {
-        mkdir 'docs/'
-        mkdir 'reports/'
         def thisRepo = rootProject.projectDir.toString()
         
         def grgit = git.clone {
@@ -52,7 +50,6 @@ task deployReports(type: Copy, dependsOn: ['reports', 'check']) {
         grgit.checkout {
             branch = 'gh-pages'
         }
-        
         grgit.add (update: false, patterns: ['reports/'])
         grgit.add (update: true, patterns: ['reports/'])
         grgit.add (update: false, patterns: ['docs/'])
@@ -61,5 +58,10 @@ task deployReports(type: Copy, dependsOn: ['reports', 'check']) {
             message = "Updating web pages"
         }
         grgit.push {}
+        grgit.checkout {
+        	branch = 'main'
+        }
     }
+    
+ 
 }
