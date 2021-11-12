@@ -41,7 +41,7 @@ task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest']) {
 task deployReports(type: Copy, dependsOn: ['reports', 'check']) {                                             
     doLast {
        
-        def pagesDir = "gh-pages/"
+        def pagesDir = "$buildDirgh-pages/"
         def grgit = git.open {
             dir = pagesDir + "/.git"
         }
