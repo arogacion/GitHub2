@@ -26,12 +26,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       working-directory: .
-      timeout-minutes: 3
       run: ./gradlew build
     - name: Test with Gradle
       working-directory: .
-      timeout-minutes: 3
       run: ./gradlew test
     - name: Deploy Reports
-      timeout-minute: 3
       run: ./gradlew deployReports
