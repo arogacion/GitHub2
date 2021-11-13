@@ -23,8 +23,5 @@ hs_err_pid*
 /.classpath
 /bin/
 /build/
-/.project
 /.gradle
 /.settings
-/docs
-/reports
