@@ -50,8 +50,11 @@ task deployReports(dependsOn: ['reports', 'check']) {
         grgit.commit {
             message = "Updating web pages"
         }
-        grgit.push(remote: "${branch}")
+        grgit.push()
         grgit.close()
+        grgit.checkout{
+        	branch = 'main'
+        }
     }
     
  
