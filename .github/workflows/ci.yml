@@ -24,9 +24,7 @@ jobs:
         cache: gradle
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
-    - name: Test with gradle
-      run: ./gradlew test
-    - name: Deploy Reports to a website
-      run: ./gradlew deployReports
+    - name: Build and test
+      working-directory: .
+      timeout-minutes: 3
+      run: ./gradlew build tasks --all
