@@ -23,7 +23,7 @@ test {
 }
 
 task copyDocs (type: Copy) {            
-    from 'build/docs'
+    from "build/docs"
     into 'docs/'
     dependsOn 'javadoc'
 }
@@ -38,16 +38,19 @@ task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest']) {
 	description 'Runs the javadoc and test task'
 }
 
-task deployReports(type: Copy, dependsOn: ['reports', 'check']) {                                             
+task deployReports(dependsOn: ['reports', 'check']) {                                             
     doLast {
        
-        def grgit = Grgit.open (dir: ".")
+        def grgit = git.open (dir: 'C:/Users/clust/Documents/CS350/GitHub2')
+        grgit.checkout{
+        	branch = 'gh-pages'
+        }
         grgit.add (patterns: ['reports/'])
         grgit.add (patterns: ['docs/'])
         grgit.commit {
             message = "Updating web pages"
         }
-        grgit.push(remote: "{gh-pages}")
+        grgit.push(remote: "${branch}")
         grgit.close()
     }
     
