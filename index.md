@@ -1,6 +1,6 @@
 # Project Reports
 
-Your Name
+Ariell Rogacion
 
 * [Tests](./reports/tests/test/)
 * [JavaDoc](./docs/javadoc/)
